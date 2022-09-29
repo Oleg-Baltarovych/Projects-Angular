@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <h1>Create Account</h1>
+  <h2>Let's get productive toghether!</h2>
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <div class="labels">
+      <label>Full Name*</label>
+      <label>Username*</label>
+    </div>
+    <div class="inputs">
+      <input type="text" formControlName="fullName" />
+      <input type="text" formControlName="username" />
+    </div>
+    <div class="labels">
+      <label>Email*</label>
+      <label>Phone number*</label>
+    </div>
+    <div class="inputs">
+      <input type="email" formControlName="email" />
+      <input type="tel" formControlName="phone" />
+    </div>
+    <span class="emailV" *ngIf="email && email.invalid && email.touched">
+      Please enter a valid email address
+    </span>
+    <span class="phoneV" *ngIf="phone && phone.invalid && phone.touched">
+      Please enter a valid phone number
+    </span>
+    <ng-container formGroupName="address">
+      <div class="labels">
+        <label>Address line*</label>
+        <label class="suiteLabel">Suite*</label>
+      </div>
+      <div class="inputs">
+        <input type="text" class="adressLine" formControlName="street" />
+        <input type="text" class="suite" formControlName="suite" />
+      </div>
+      <div class="labels">
+        <label>City*</label>
+        <label>ZIP Code*</label>
+      </div>
+      <div class="inputs">
+        <input type="text" formControlName="city" />
+        <input type="text" formControlName="zipcode" />
+      </div>
+    </ng-container>
+    <button type="submit">Create Account</button>
+  </form>
+</div>

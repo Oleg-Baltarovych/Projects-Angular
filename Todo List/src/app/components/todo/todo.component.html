@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <div class="head">
+    <h1>All ToDo's</h1>
+    <input type="text" placeholder="Add a task" [(ngModel)]="todo" />
+    <button class="addToDo" mat-raised-button (click)="addTodo()">
+      Add a ToDo
+    </button>
+  </div>
+  <div class="todos">
+    <div
+      class="todo {{ todo.completed ? 'done' : '' }}"
+      *ngFor="let todo of todos"
+    >
+      <div style="display: flex">
+        <input
+          type="checkbox"
+          (click)="editStatus(todo.id)"
+          [checked]="todo.completed"
+        />
+        <p>{{ todo.title }}</p>
+      </div>
+      <div class="images">
+        <img
+          src="../../../assets/edit.svg"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        /><img (click)="deleteTodo(todo.id)" src="../../../assets/delete.svg" />
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit task</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <input style="height: 28px" type="text" [(ngModel)]="editedTodo" />
+          <button
+            (click)="editTodo(editedTodo)"
+            style="border-radius: 10px; margin-left: 20px"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
